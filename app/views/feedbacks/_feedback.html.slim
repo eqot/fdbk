@@ -1,4 +1,13 @@
-h2
-  = feedback.title
+= link_to feedback, class: "list-group-item list-item"
+  div
+    h4.list-group-item-heading
+      = feedback.title
 
-= feedback.description
+    .list-group-item-text.clearfix
+      p.ellipsis
+        - if feedback.description?
+          = feedback.description
+
+      div
+        .pull-right
+          = feedback.user.name

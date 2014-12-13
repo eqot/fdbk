@@ -1,4 +1,8 @@
-h1 Feedbacks#index
-p Find me in app/views/feedbacks/index.html.slim
+.center
+  = paginate @feedbacks
 
-= render @feedbacks
+.list-group
+  = render @feedbacks
+
+.center
+  = paginate @feedbacks
