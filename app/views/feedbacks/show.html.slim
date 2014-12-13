@@ -1,4 +1,5 @@
 h2
   = @feedback.title
 
-= Markdown.html @feedback.description
+- if @feedback.description?
+  = Markdown.html @feedback.description
