@@ -36,5 +36,8 @@ module FDBK
         request_specs: false
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
+
+    # Add utility modules
+    config.autoload_paths += Dir[Rails.root.join('lib', 'autoload')]
   end
 end

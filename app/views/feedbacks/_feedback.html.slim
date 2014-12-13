@@ -6,7 +6,7 @@
     .list-group-item-text.clearfix
       p.ellipsis
         - if feedback.description?
-          = feedback.description
+          = Markdown.text feedback.description
 
       div
         .pull-right
