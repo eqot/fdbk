@@ -4,7 +4,7 @@ class FeedbacksController < ApplicationController
   end
 
   def show
-    @feedback = Feedback.find_by(params[:id])
+    @feedback = Feedback.find(params[:id])
   end
 
   def new
