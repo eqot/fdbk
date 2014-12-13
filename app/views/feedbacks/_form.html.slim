@@ -1,0 +1,29 @@
+= form_for(feedback, class: 'form-horizontal', role: 'form') do |f|
+  - if feedback.errors.any?
+    .alert.alert-danger
+      ul
+        - feedback.errors.full_messages.each do |msg|
+          li #{msg}
+
+  .form-group
+    = f.text_field :title, class: 'form-control', placeholder: :title
+
+  .form-group
+    .panel.panel-default
+      .panel-body
+        ul.nav.nav-tabs role="tablist"
+          li.active
+            a href="#write" role="tab" data-toggle="tab"
+              | Write
+          li
+            a href="#preview" role="tab" data-toggle="tab"
+              | Preview
+        .tab-content
+          .tab-pane.fade.in.active#write
+            = f.text_area :description, class: 'form-control', rows: 10, placeholder: :description
+          .tab-pane.fade#preview
+            #markdown
+
+  .button-group
+    = f.submit task, class: 'btn btn-primary', data: { disable_with: 'Processing...' }
+    = link_to 'Cancel', feedback, class: "btn btn-default"

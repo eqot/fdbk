@@ -1,0 +1,39 @@
+header.navbar.navbar-default role="navigation"
+  .container
+    .navbar-header
+      button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      = link_to "fdbk", root_path, class: "navbar-brand", id: "logo"
+
+    .collapse.navbar-collapse#bs-example-navbar-collapse-1
+
+      ul.nav.navbar-nav
+        li
+          = link_to "About", about_path
+        li
+          = link_to "Feedbacks", feedbacks_path
+
+      ul.nav.navbar-nav.navbar-right
+        li
+          .dropdown
+            button.btn.btn-default.dropdown-toggle#dropdownMenuAction type="button" data-toggle="dropdown"
+              | Action
+              span.caret<
+            ul.dropdown-menu role="menu" aria-labelledby="dropdownMenuAction"
+              li role="presentation"
+                = link_to "Feedback", new_feedback_path
+        li
+          div
+            - if !user_signed_in?
+              = link_to "Sign in", sign_in_path, class: "btn btn-success"
+            - else
+              .dropdown
+                button.btn.btn-default.dropdown-toggle#dropdownMenuUser type="button" data-toggle="dropdown"
+                  = current_user.name
+                  span.caret<
+                ul.dropdown-menu role="menu" aria-labelledby="dropdownMenuUser"
+                  li role="presentation"
+                    = link_to "Sign out", sign_out_path

@@ -1,0 +1,16 @@
+= link_to feedback, class: "list-group-item list-item"
+  div
+    h4.list-group-item-heading
+      = feedback.title
+
+    .list-group-item-text.clearfix
+      p.ellipsis
+        - if feedback.description?
+          = Markdown.text feedback.description
+
+      div
+        .pull-right
+          - if feedback.user.present?
+            = feedback.user.name
+          - else
+            | Anonymous

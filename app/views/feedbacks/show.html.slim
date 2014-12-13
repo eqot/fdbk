@@ -1,0 +1,22 @@
+h2 #{@feedback.title}
+
+.panel.panel-default
+  .panel-heading
+    | User
+  .panel-body
+    - if @feedback.user.present?
+      = @feedback.user.name
+    - else
+      | Anonymous
+
+.panel.panel-default
+  .panel-heading
+    | Description
+  .panel-body
+    - if @feedback.description?
+      = Markdown.html @feedback.description
+
+.button-group
+  - if @feedback.user?(current_user)
+    = link_to 'Edit', edit_feedback_path(@feedback), class: 'btn btn-info'
+    = link_to 'Delete', feedback_path(@feedback), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?'}
