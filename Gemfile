@@ -102,3 +102,7 @@ group :test do
   gem 'launchy'
   gem 'selenium-webdriver'
 end
+
+# Use kaminari for pagination
+gem 'kaminari'
+gem 'kaminari-bootstrap'
