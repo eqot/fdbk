@@ -13,6 +13,8 @@ header.navbar.navbar-default role="navigation"
       ul.nav.navbar-nav
         li
           = link_to "About", about_path
+        li
+          = link_to "Feedbacks", feedbacks_path
 
       ul.nav.navbar-nav.navbar-right
         li
@@ -22,7 +24,7 @@ header.navbar.navbar-default role="navigation"
               span.caret<
             ul.dropdown-menu role="menu" aria-labelledby="dropdownMenuAction"
               li role="presentation"
-                = link_to "Action"
+                = link_to "Feedback", new_feedback_path
         li
           div
             - if !user_signed_in?
