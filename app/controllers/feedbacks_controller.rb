@@ -20,6 +20,19 @@ class FeedbacksController < ApplicationController
     end
   end
 
+  def edit
+    @feedback = Feedback.find(params[:id])
+  end
+
+  def update
+    @feedback = current_user.feedbacks.find(params[:id])
+    if @feedback.update(feedback_params)
+      redirect_to @feedback, notice: 'Updated'
+    else
+      render :new
+    end
+  end
+
   private
 
   def feedback_params
