@@ -8,11 +8,20 @@ class FeedbacksController < ApplicationController
   end
 
   def new
-    @feedback = current_user.feedbacks.build
+    if user_signed_in?
+      @feedback = current_user.feedbacks.build
+    else
+      @feedback = Feedback.new
+    end
   end
 
   def create
-    @feedback = current_user.feedbacks.build(feedback_params)
+    if user_signed_in?
+      @feedback = current_user.feedbacks.build(feedback_params)
+    else
+      @feedback = Feedback.new(feedback_params)
+    end
+
     if @feedback.save
       redirect_to @feedback, notice: 'Created'
     else

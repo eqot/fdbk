@@ -4,7 +4,10 @@ h2 #{@feedback.title}
   .panel-heading
     | User
   .panel-body
-    = @feedback.user.name
+    - if @feedback.user.present?
+      = @feedback.user.name
+    - else
+      | Anonymous
 
 .panel.panel-default
   .panel-heading
