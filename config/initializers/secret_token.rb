@@ -24,4 +24,4 @@ def secure_token
   end
 end
 
-RailsBase42::Application.config.secret_key_base = secure_token
+FDBK::Application.config.secret_key_base = secure_token

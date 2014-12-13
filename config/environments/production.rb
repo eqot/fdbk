@@ -88,5 +88,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Devise
-  config.action_mailer.default_url_options = { host: 'rails-base', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'fdbk', port: 3000 }
 end
