@@ -1,6 +1,6 @@
 class FeedbacksController < ApplicationController
   def index
-    @feedbacks = Feedback.all.page(params[:page])
+    @feedbacks = Feedback.all.order('created_at desc').page(params[:page])
   end
 
   def show
