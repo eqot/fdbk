@@ -9,7 +9,8 @@ html
     = csrf_meta_tags
 
   body
-    = render partial: 'layouts/header'
+    - if params[:v] != 'part'
+      = render partial: 'layouts/header'
 
     .container
       - flash.each do |key, value|
@@ -24,4 +25,5 @@ html
     .container
       = yield
 
-    = render partial: 'layouts/footer'
+    - if params[:v] != 'part'
+      = render partial: 'layouts/footer'
