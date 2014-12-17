@@ -6,7 +6,7 @@
           li #{msg}
 
   .form-group
-    = f.text_field :title, class: 'form-control', placeholder: :title
+    = f.text_field :title, class: 'form-control', placeholder: 'Title (Mandatory)'
 
   .form-group
     .panel.panel-default
@@ -20,7 +20,7 @@
               | Preview
         .tab-content
           .tab-pane.fade.in.active#write
-            = f.text_area :description, class: 'form-control', rows: 10, placeholder: :description
+            = f.text_area :description, class: 'form-control', rows: 10, placeholder: 'Description (Optional)'
           .tab-pane.fade#preview
             #markdown
 
