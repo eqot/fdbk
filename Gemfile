@@ -112,3 +112,6 @@ gem 'kaminari-bootstrap'
 
 # Use downr for markdown
 gem 'downr'
+
+# Use rack-cors for supporting CORS
+gem 'rack-cors', :require => 'rack/cors'
