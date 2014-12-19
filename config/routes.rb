@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :feedbacks
+  resources :tags
 
   devise_for :users
   devise_scope :user do
