@@ -18,7 +18,12 @@ enableMarkdownPreview = ->
 enableEscKeyToCancel = ->
   if location.search.indexOf('v=part') isnt -1
     document.addEventListener 'keydown', onKeyDown, true
+    document.querySelector('#partCancel').addEventListener 'click', ->
+      sendMessage 'close'
 
 onKeyDown = (event) ->
   if event.keyCode is 27
-    window.parent.postMessage 'close', '*'
+    sendMessage 'close'
+
+sendMessage = (message) ->
+  window.parent.postMessage message, '*'
