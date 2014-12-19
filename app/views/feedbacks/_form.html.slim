@@ -24,6 +24,9 @@
           .tab-pane.fade#preview
             #markdown
 
+  .form-group
+    = f.text_field :tag_labels, class: 'form-control', placeholder: 'Tags (Optional)'
+
   .button-group
     = f.submit task, class: 'btn btn-primary', data: { disable_with: 'Processing...' }
     - if params[:v] != 'part'

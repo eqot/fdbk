@@ -23,6 +23,13 @@ class FeedbacksController < ApplicationController
     end
 
     if @feedback.save
+      tags = params[:feedback][:tag_labels].split(',')
+      tags.each do |label|
+        tag = Tag.find_or_create_by(label: label.strip)
+        tag.save!
+        @feedback.add!(tag)
+      end
+
       redirect_to @feedback, notice: 'Created'
     else
       render :new
@@ -46,7 +53,7 @@ class FeedbacksController < ApplicationController
 
   def feedback_params
     params.require(:feedback).permit(
-      :title, :description
+      :title, :description, :tag_labels
     )
   end
 end
