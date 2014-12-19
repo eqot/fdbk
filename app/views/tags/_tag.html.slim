@@ -1,3 +1,8 @@
-= link_to tag
-  span.label.label-primary.tag
-    = tag.label
+- if with_link.present? && with_link
+  = link_to tag
+    span.label.label-primary.tag
+      = tag.label
+- else
+  span
+    span.label.label-primary.tag
+      = tag.label
