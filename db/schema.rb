@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141219161921) do
+ActiveRecord::Schema.define(version: 20141219163511) do
 
   create_table "feedbacks", force: true do |t|
     t.string   "title",       limit: 255,   null: false
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 20141219161921) do
   end
 
   add_index "feedbacks", ["user_id"], name: "index_feedbacks_on_user_id", using: :btree
+
+  create_table "tag_feedbacks", force: true do |t|
+    t.integer  "tag_id",      limit: 4
+    t.integer  "feedback_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "tag_feedbacks", ["tag_id", "feedback_id"], name: "index_tag_feedbacks_on_tag_id_and_feedback_id", unique: true, using: :btree
 
   create_table "tags", force: true do |t|
     t.string   "label",      limit: 255
