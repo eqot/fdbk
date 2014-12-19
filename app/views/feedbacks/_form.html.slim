@@ -26,4 +26,7 @@
 
   .button-group
     = f.submit task, class: 'btn btn-primary', data: { disable_with: 'Processing...' }
-    = link_to 'Cancel', feedback, class: "btn btn-default"
+    - if params[:v] != 'part'
+      = link_to 'Cancel', feedback, class: "btn btn-default"
+    - else
+      = link_to 'Cancel', '#', class: 'btn btn-default', id: 'partCancel'
