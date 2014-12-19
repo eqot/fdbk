@@ -5,12 +5,15 @@ namespace :db do
     make_users
     make_feedbacks
     make_tags
+    make_tag_feedbacks
   end
 end
 
 def clean
   User.all.delete_all
   Feedback.all.delete_all
+  Tag.all.delete_all
+  TagFeedback.all.delete_all
 end
 
 def make_users
@@ -46,5 +49,16 @@ def make_tags
     Tag.create!(
       label: Faker::Lorem.word
     )
+  end
+end
+
+def make_tag_feedbacks
+  feedbacks = Feedback.all[0..10]
+  tags = Tag.all[0..3]
+
+  feedbacks.each do |feedback|
+    tags.each do |tag|
+      feedback.add!(tag)
+    end
   end
 end
