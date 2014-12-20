@@ -1,5 +1,5 @@
 default: &default
-  fluent_host:   <%= ENV['FLUENTD_URL'] %>
+  fluent_host:   <%= ENV['FLUENTD_HOST'] %>
   fluent_port:   24224
   tag:           'fdbk'
   messages_type: 'string'
@@ -11,7 +11,4 @@ test:
   <<: *default
 
 production:
-  <<: *default
-
-development:
   <<: *default
