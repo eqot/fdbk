@@ -13,6 +13,10 @@ class FeedbacksController < ApplicationController
     else
       @feedback = Feedback.new
     end
+
+    if params[:t].present?
+      @feedback.tag_labels = params[:t]
+    end
   end
 
   def create

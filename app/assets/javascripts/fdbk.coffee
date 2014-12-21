@@ -1,9 +1,9 @@
 class Fdbk
   element: null
 
-  constructor: ->
+  constructor: (tag) ->
     iframe = document.createElement 'iframe'
-    iframe.src = 'http://localhost:3001/feedbacks/new?v=part'
+    iframe.src = 'http://localhost:3001/feedbacks/new?v=part' + if tag? then '&t=' + tag else ''
 
     @element = document.createElement 'pocket-4d'
     @element.append iframe
