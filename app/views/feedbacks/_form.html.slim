@@ -32,4 +32,5 @@
     - if params[:v] != 'part'
       = link_to 'Cancel', feedback, class: "btn btn-default"
     - else
+      = link_to 'Capture screen', '#', class: "btn btn-info", id: 'partCapture'
       = link_to 'Cancel', '#', class: 'btn btn-default', id: 'partCancel'
