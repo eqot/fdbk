@@ -18,8 +18,12 @@ enableMarkdownPreview = ->
 enableEscKeyToCancel = ->
   if location.search.indexOf('v=part') isnt -1
     document.addEventListener 'keydown', onKeyDown, true
+    document.querySelector('#partCapture').addEventListener 'click', ->
+      sendMessage 'capture'
     document.querySelector('#partCancel').addEventListener 'click', ->
       sendMessage 'close'
+
+    window.addEventListener 'message', onMessageReceive
 
 onKeyDown = (event) ->
   if event.keyCode is 27
@@ -27,3 +31,9 @@ onKeyDown = (event) ->
 
 sendMessage = (message) ->
   window.parent.postMessage message, '*'
+
+onMessageReceive = (event) ->
+  image = document.createElement 'img'
+  image.src = event.data
+
+  document.body.appendChild image

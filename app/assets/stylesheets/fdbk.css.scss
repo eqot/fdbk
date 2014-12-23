@@ -1,0 +1,28 @@
+#fdbk-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+#fdbk-capture-area {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100px;
+  height: 100px;
+  border: solid 1px #f00;
+  background-color: rgba(255, 0, 0, 0.2);
+  cursor: move;
+}
+
+#fdbk-capture-buttons {
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  button {
+    margin: 0;
+  }
+}
