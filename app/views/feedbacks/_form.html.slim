@@ -27,6 +27,9 @@
   .form-group class=(params[:t] ? 'sr-only' : '')
     = f.text_field :tag_labels, class: 'form-control', placeholder: 'Tags (Optional)'
 
+  .form-group
+    #image-upload
+
   .button-group
     = f.submit task, class: 'btn btn-primary', data: { disable_with: 'Processing...' }
     - if params[:v] != 'part'

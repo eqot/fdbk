@@ -35,5 +35,6 @@ sendMessage = (message) ->
 onMessageReceive = (event) ->
   image = document.createElement 'img'
   image.src = event.data
+  image.classList.add 'screen-capture'
 
-  document.body.appendChild image
+  document.querySelector('#image-upload').appendChild image
