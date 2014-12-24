@@ -128,7 +128,19 @@ class Fdbk
 
   capture: (src, callback) ->
     html2canvas(document.body).then (canvas) ->
-      image = canvas.toDataURL 'image/png'
+      x = document.body.scrollLeft
+      y = document.body.scrollTop
+      w = window.innerWidth
+      h = window.innerHeight
+
+      dstCanvas = document.createElement 'canvas'
+      dstCanvas.width = w
+      dstCanvas.height = h
+
+      context = dstCanvas.getContext '2d'
+      context.drawImage canvas, x, y, w, h, 0, 0, w, h
+
+      image = dstCanvas.toDataURL 'image/png'
       src.postMessage image, '*'
 
       if callback?
