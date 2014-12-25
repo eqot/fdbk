@@ -1,5 +1,3 @@
-h2 #{@feedback.title}
-
 .panel.panel-default
   .panel-heading
     | User
@@ -11,10 +9,16 @@ h2 #{@feedback.title}
 
 .panel.panel-default
   .panel-heading
-    | Description
+    | Comment
   .panel-body
-    - if @feedback.description?
-      = Markdown.html @feedback.description
+    - if @feedback.comment?
+      = Markdown.html @feedback.comment
+
+.panel.panel-default
+  .panel-heading
+    | URL
+  .panel-body
+    = link_to @feedback.url, @feedback.url
 
 .panel.panel-default
   .panel-heading

@@ -1,8 +1,8 @@
 class CreateFeedbacks < ActiveRecord::Migration
   def change
     create_table :feedbacks do |t|
-      t.string :title,    null: false
-      t.text :description
+      t.text :comment
+      t.string :url
       t.integer :user_id
 
       t.timestamps null: false

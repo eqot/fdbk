@@ -57,7 +57,7 @@ class FeedbacksController < ApplicationController
 
   def feedback_params
     params.require(:feedback).permit(
-      :title, :description, :tag_labels
+      :comment, :url, :tag_labels
     )
   end
 end

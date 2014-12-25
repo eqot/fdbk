@@ -1,12 +1,9 @@
 = link_to feedback, class: "list-group-item list-item"
   div
-    h4.list-group-item-heading
-      = feedback.title
-
     .list-group-item-text.clearfix
       p.ellipsis
-        - if feedback.description?
-          = Markdown.text feedback.description
+        - if feedback.comment?
+          = Markdown.text feedback.comment
 
       div
         .pull-right
