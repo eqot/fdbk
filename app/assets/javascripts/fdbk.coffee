@@ -14,8 +14,11 @@ class Fdbk
   areaLocation: []
 
   constructor: (tag) ->
+    base_url = 'http://localhost:3001/feedbacks/new'
+    query = '?v=part' + '&u=' + location.href + if tag? then '&t=' + tag else ''
+
     iframe = document.createElement 'iframe'
-    iframe.src = 'http://localhost:3001/feedbacks/new?v=part' + if tag? then '&t=' + tag else ''
+    iframe.src = base_url + query
 
     @element = document.createElement 'pocket-4d'
     @element.append iframe

@@ -14,6 +14,10 @@ class FeedbacksController < ApplicationController
       @feedback = Feedback.new
     end
 
+    if params[:u].present?
+      @feedback.url = params[:u]
+    end
+
     if params[:t].present?
       @feedback.tag_labels = params[:t]
     end

@@ -21,7 +21,7 @@
           .tab-pane.fade#preview
             #markdown
 
-  .form-group
+  .form-group class=(params[:u] ? 'sr-only' : '')
     = f.text_field :url, class: 'form-control', placeholder: 'URL'
 
   .form-group class=(params[:t] ? 'sr-only' : '')
