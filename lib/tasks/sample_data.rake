@@ -36,8 +36,8 @@ def make_feedbacks
   User.all[0..3].each do |user|
     10.times do |index|
       Feedback.create!(
-        title: Faker::Lorem.sentence,
-        description: Faker::Lorem.paragraph,
+        comment: Faker::Lorem.paragraph,
+        url: Faker::Internet.url,
         user_id: user.id
       )
     end

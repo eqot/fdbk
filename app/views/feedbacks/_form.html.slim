@@ -6,9 +6,6 @@
           li #{msg}
 
   .form-group
-    = f.text_field :title, class: 'form-control', placeholder: 'Title (Mandatory)'
-
-  .form-group
     .panel.panel-default
       .panel-body
         ul.nav.nav-tabs role="tablist"
@@ -20,12 +17,18 @@
               | Preview
         .tab-content
           .tab-pane.fade.in.active#write
-            = f.text_area :description, class: 'form-control', rows: 10, placeholder: 'Description (Optional)'
+            = f.text_area :comment, class: 'form-control', rows: 10, placeholder: 'Comment'
           .tab-pane.fade#preview
             #markdown
 
+  .form-group class=(params[:u] ? 'sr-only' : '')
+    = f.text_field :url, class: 'form-control', placeholder: 'URL'
+
   .form-group class=(params[:t] ? 'sr-only' : '')
-    = f.text_field :tag_labels, class: 'form-control', placeholder: 'Tags (Optional)'
+    = f.text_field :tag_labels, class: 'form-control', placeholder: 'Tags'
+
+  .form-group
+    #image-upload
 
   .button-group
     = f.submit task, class: 'btn btn-primary', data: { disable_with: 'Processing...' }

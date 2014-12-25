@@ -14,8 +14,11 @@ class Fdbk
   areaLocation: []
 
   constructor: (tag) ->
+    base_url = 'http://localhost:3001/feedbacks/new'
+    query = '?v=part' + '&u=' + location.href + if tag? then '&t=' + tag else ''
+
     iframe = document.createElement 'iframe'
-    iframe.src = 'http://localhost:3001/feedbacks/new?v=part' + if tag? then '&t=' + tag else ''
+    iframe.src = base_url + query
 
     @element = document.createElement 'pocket-4d'
     @element.append iframe
@@ -128,7 +131,19 @@ class Fdbk
 
   capture: (src, callback) ->
     html2canvas(document.body).then (canvas) ->
-      image = canvas.toDataURL 'image/png'
+      x = document.body.scrollLeft
+      y = document.body.scrollTop
+      w = window.innerWidth
+      h = window.innerHeight
+
+      dstCanvas = document.createElement 'canvas'
+      dstCanvas.width = w
+      dstCanvas.height = h
+
+      context = dstCanvas.getContext '2d'
+      context.drawImage canvas, x, y, w, h, 0, 0, w, h
+
+      image = dstCanvas.toDataURL 'image/png'
       src.postMessage image, '*'
 
       if callback?
