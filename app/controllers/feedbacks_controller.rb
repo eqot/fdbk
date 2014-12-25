@@ -27,13 +27,7 @@ class FeedbacksController < ApplicationController
     end
 
     if @feedback.save
-      tags = params[:feedback][:tag_labels].split(',')
-      tags.each do |label|
-        tag = Tag.find_or_create_by(label: label.strip)
-        tag.save!
-        @feedback.add!(tag)
-      end
-
+      save_tags
       redirect_to @feedback, notice: 'Created'
     else
       render :new
@@ -42,11 +36,15 @@ class FeedbacksController < ApplicationController
 
   def edit
     @feedback = Feedback.find(params[:id])
+
+    tags = @feedback.tags.collect(&:label)
+    @feedback.tag_labels = tags.join(', ')
   end
 
   def update
     @feedback = current_user.feedbacks.find(params[:id])
     if @feedback.update(feedback_params)
+      save_tags
       redirect_to @feedback, notice: 'Updated'
     else
       render :new
@@ -59,5 +57,15 @@ class FeedbacksController < ApplicationController
     params.require(:feedback).permit(
       :comment, :url, :tag_labels
     )
+  end
+
+  def save_tags
+    tags = params[:feedback][:tag_labels].split(',')
+    tags.each do |label|
+      tag = Tag.find_or_create_by(label: label.strip)
+      tag.save!
+
+      @feedback.add!(tag)
+    end
   end
 end

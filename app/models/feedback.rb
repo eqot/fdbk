@@ -11,7 +11,12 @@ class Feedback < ActiveRecord::Base
     user_id == user.id
   end
 
+  def tagged?(tag)
+    return false unless tag
+    tag_feedbacks.find_by(tag_id: tag.id)
+  end
+
   def add!(tag)
-    tag_feedbacks.create!(tag_id: tag.id)
+    tag_feedbacks.find_or_create_by!(tag_id: tag.id)
   end
 end
