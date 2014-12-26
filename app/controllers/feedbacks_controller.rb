@@ -70,7 +70,7 @@ class FeedbacksController < ApplicationController
 
   def feedback_params
     params.require(:feedback).permit(
-      :comment, :url, :tag_labels
+      :comment, :url, :tag_labels, :file, :file_cache, :remove_file
     )
   end
 

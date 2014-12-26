@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20141219163511) do
   create_table "feedbacks", force: :cascade do |t|
     t.text     "comment",    limit: 65535
     t.string   "url",        limit: 255
+    t.string   "file",       limit: 255
     t.integer  "user_id",    limit: 4
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
