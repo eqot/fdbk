@@ -30,7 +30,7 @@
   .panel-heading
     | Attached file
   .panel-body
-    img src="#{@feedback.file}"
+    = image_tag @feedback.file
 
 .button-group
   - if @feedback.user?(current_user)
