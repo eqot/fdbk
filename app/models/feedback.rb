@@ -4,6 +4,10 @@ class Feedback < ActiveRecord::Base
   has_many :tag_feedbacks
   has_many :tags, through: :tag_feedbacks
 
+  mount_uploader :file, FileUploader
+
+  validates :comment, presence: true
+
   attr_accessor :tag_labels
 
   def user?(user)

@@ -3,6 +3,7 @@ class CreateFeedbacks < ActiveRecord::Migration
     create_table :feedbacks do |t|
       t.text :comment
       t.string :url
+      t.string :file
       t.integer :user_id
 
       t.timestamps null: false

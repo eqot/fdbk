@@ -26,6 +26,12 @@
   .panel-body
     = render @feedback.tags, with_link: true
 
+.panel.panel-default
+  .panel-heading
+    | Attached file
+  .panel-body
+    = image_tag @feedback.file
+
 .button-group
   - if @feedback.user?(current_user)
     = link_to 'Edit', edit_feedback_path(@feedback), class: 'btn btn-info'

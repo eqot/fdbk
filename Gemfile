@@ -111,3 +111,6 @@ gem 'downr'
 
 # Use rack-cors for supporting CORS
 gem 'rack-cors', :require => 'rack/cors'
+
+# Use carrierwave for uploading image
+gem 'carrierwave'
