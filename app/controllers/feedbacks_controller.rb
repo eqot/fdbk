@@ -14,8 +14,10 @@ class FeedbacksController < ApplicationController
       @feedback = Feedback.new
     end
 
-    if params[:v].present?
+    if params[:v].present? && params[:v] == 'part'
       session[:v] = 'part'
+    else
+      session.delete(:v)
     end
 
     if params[:u].present?
