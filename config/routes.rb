@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   root 'static_pages#top'
 
   get 'about' => 'static_pages#about'
+  get 'thankyou' => 'static_pages#thankyou'
 
   mount Markdown::API => '/'
 

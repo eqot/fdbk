@@ -14,6 +14,10 @@ class FeedbacksController < ApplicationController
       @feedback = Feedback.new
     end
 
+    if params[:v].present?
+      session[:v] = 'part'
+    end
+
     if params[:u].present?
       @feedback.url = params[:u]
     end
@@ -32,7 +36,12 @@ class FeedbacksController < ApplicationController
 
     if @feedback.save
       save_tags
-      redirect_to @feedback, notice: 'Created'
+
+      if session[:v].present?
+        redirect_to thankyou_path
+      else
+        redirect_to @feedback, notice: 'Created'
+      end
     else
       render :new
     end
