@@ -4,6 +4,8 @@ class Feedback < ActiveRecord::Base
   has_many :tag_feedbacks
   has_many :tags, through: :tag_feedbacks
 
+  validates :comment, presence: true
+
   attr_accessor :tag_labels
 
   def user?(user)
