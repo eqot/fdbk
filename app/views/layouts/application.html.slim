@@ -9,7 +9,7 @@ html
     = csrf_meta_tags
 
   body
-    - if params[:v] != 'part'
+    - if session[:v] != 'part'
       = render partial: 'layouts/header'
 
     .container
@@ -25,5 +25,5 @@ html
     .container
       = yield
 
-    - if params[:v] != 'part'
+    - if session[:v] != 'part'
       = render partial: 'layouts/footer'
