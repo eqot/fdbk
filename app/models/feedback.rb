@@ -36,6 +36,7 @@ class Feedback < ActiveRecord::Base
   end
 
   def file_data=(data)
+    return false unless data && data.length > 0
     self.file = CarrierStringIO.new(Base64.decode64(data['data:image/png;base64,'.length .. -1]))
   end
 end
