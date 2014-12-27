@@ -38,6 +38,6 @@ onMessageReceive = (event) ->
   image.src = event.data
   image.classList.add 'screen-capture'
 
-  document.querySelector('#image-upload').appendChild image
+  document.querySelector('.feedback-file')?.appendChild image
 
   document.querySelector('#feedback_file_data').value = event.data

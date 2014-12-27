@@ -28,17 +28,15 @@
     = f.text_field :tag_labels, class: 'form-control', placeholder: 'Tags'
 
   .form-group
-    - if feedback.file?
-      div
-        = image_tag feedback.file
-        =< f.check_box :remove_file
-        | Remove this file
+    .feedback-file
+      - if feedback.file?
+        div
+          = image_tag feedback.file
+          =< f.check_box :remove_file
+          | Remove this file
     = f.file_field :file
     = f.hidden_field :file_cache
     = f.hidden_field :file_data
-
-  .form-group
-    #image-upload
 
   .button-group
     = f.submit task, class: 'btn btn-primary', data: { disable_with: 'Processing...' }
