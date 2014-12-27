@@ -1,3 +1,13 @@
+class CarrierStringIO < StringIO
+  def original_filename
+    "image.png"
+  end
+
+  def content_type
+    "image/png"
+  end
+end
+
 class Feedback < ActiveRecord::Base
   belongs_to :user
 
@@ -9,6 +19,7 @@ class Feedback < ActiveRecord::Base
   validates :comment, presence: true
 
   attr_accessor :tag_labels
+  attr_accessor :file_data
 
   def user?(user)
     return false unless user
@@ -22,5 +33,9 @@ class Feedback < ActiveRecord::Base
 
   def add!(tag)
     tag_feedbacks.find_or_create_by!(tag_id: tag.id)
+  end
+
+  def file_data=(data)
+    self.file = CarrierStringIO.new(Base64.decode64(data['data:image/png;base64,'.length .. -1]))
   end
 end
