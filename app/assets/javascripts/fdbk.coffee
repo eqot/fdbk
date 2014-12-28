@@ -7,13 +7,14 @@ class Fdbk
   element: null
   cover: null
   area: null
+  target: null
 
   mouseState: MouseState.RELEASED
   mouseX: 0
   mouseY: 0
   areaLocation: []
 
-  constructor: (tag) ->
+  constructor: (tag, target) ->
     base_url = 'http://localhost:3001/feedbacks/new'
     query = '?v=part' + '&u=' + location.href + if tag? then '&t=' + tag else ''
 
@@ -30,31 +31,42 @@ class Fdbk
     @onMouseMove = @onMouseMove.bind(@)
     @onMouseUp = @onMouseUp.bind(@)
 
+    @finishAreaSelection = @finishAreaSelection.bind(@)
+
+    @target = target
+
   open: ->
     @element.open()
     @element.focus()
+
+    @target?.classList.add 'fdbk-hidden'
 
   close: ->
     @element.close()
     @element.blur()
 
-  selectArea: (srcWin) ->
-    @close()
+    @target?.classList.remove 'fdbk-hidden'
+
+  show: ->
+    @element.show()
+
+  hide: ->
+    @element.hide()
+
+  startAreaSelection: (srcWin) ->
+    @hide()
 
     self = @
     button = document.createElement 'button'
     button.id = 'fdbk-capture-button'
     button.innerText = 'Capture'
     button.addEventListener 'click', (event) ->
-      self.capture srcWin, ->
-        self.cover.remove()
-        self.open()
+      self.capture srcWin, self.finishAreaSelection
 
     button_c = document.createElement 'button'
     button_c.id = 'fdbk-cancel-button'
     button_c.innerText = 'Cancel'
-    button_c.addEventListener 'click', ->
-      self.open()
+    button_c.addEventListener 'click', @finishAreaSelection
 
     buttons = document.createElement 'div'
     buttons.id = 'fdbk-capture-buttons'
@@ -73,6 +85,10 @@ class Fdbk
     @cover.appendChild @area
     @cover.appendChild buttons
     document.body.appendChild @cover
+
+  finishAreaSelection: ->
+    @cover.remove()
+    @show()
 
   onMouseDown: (event) ->
     # If button is pressed, skip this method
@@ -151,7 +167,7 @@ class Fdbk
 
   onMessageReceive: (event) ->
     switch event.data
-      when 'capture' then @selectArea event.source
+      when 'capture' then @startAreaSelection event.source
       when 'close'   then @close()
 
 
