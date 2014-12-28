@@ -45,8 +45,14 @@ class Fdbk
 
     @target?.classList.remove 'fdbk-hidden'
 
+  show: ->
+    @element.show()
+
+  hide: ->
+    @element.hide()
+
   selectArea: (srcWin) ->
-    @close()
+    @hide()
 
     self = @
     button = document.createElement 'button'
@@ -55,14 +61,14 @@ class Fdbk
     button.addEventListener 'click', (event) ->
       self.capture srcWin, ->
         self.cover.remove()
-        self.open()
+        self.show()
 
     button_c = document.createElement 'button'
     button_c.id = 'fdbk-cancel-button'
     button_c.innerText = 'Cancel'
     button_c.addEventListener 'click', ->
       self.cover.remove()
-      self.open()
+      self.show()
 
     buttons = document.createElement 'div'
     buttons.id = 'fdbk-capture-buttons'
