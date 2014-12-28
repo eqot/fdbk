@@ -7,13 +7,14 @@ class Fdbk
   element: null
   cover: null
   area: null
+  target: null
 
   mouseState: MouseState.RELEASED
   mouseX: 0
   mouseY: 0
   areaLocation: []
 
-  constructor: (tag) ->
+  constructor: (tag, target) ->
     base_url = 'http://localhost:3001/feedbacks/new'
     query = '?v=part' + '&u=' + location.href + if tag? then '&t=' + tag else ''
 
@@ -30,13 +31,19 @@ class Fdbk
     @onMouseMove = @onMouseMove.bind(@)
     @onMouseUp = @onMouseUp.bind(@)
 
+    @target = target
+
   open: ->
     @element.open()
     @element.focus()
 
+    @target?.classList.add 'fdbk-hidden'
+
   close: ->
     @element.close()
     @element.blur()
+
+    @target?.classList.remove 'fdbk-hidden'
 
   selectArea: (srcWin) ->
     @close()
@@ -54,6 +61,7 @@ class Fdbk
     button_c.id = 'fdbk-cancel-button'
     button_c.innerText = 'Cancel'
     button_c.addEventListener 'click', ->
+      self.cover.remove()
       self.open()
 
     buttons = document.createElement 'div'
