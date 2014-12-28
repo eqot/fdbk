@@ -31,6 +31,8 @@ class Fdbk
     @onMouseMove = @onMouseMove.bind(@)
     @onMouseUp = @onMouseUp.bind(@)
 
+    @finishAreaSelection = @finishAreaSelection.bind(@)
+
     @target = target
 
   open: ->
@@ -51,7 +53,7 @@ class Fdbk
   hide: ->
     @element.hide()
 
-  selectArea: (srcWin) ->
+  startAreaSelection: (srcWin) ->
     @hide()
 
     self = @
@@ -59,16 +61,12 @@ class Fdbk
     button.id = 'fdbk-capture-button'
     button.innerText = 'Capture'
     button.addEventListener 'click', (event) ->
-      self.capture srcWin, ->
-        self.cover.remove()
-        self.show()
+      self.capture srcWin, self.finishAreaSelection
 
     button_c = document.createElement 'button'
     button_c.id = 'fdbk-cancel-button'
     button_c.innerText = 'Cancel'
-    button_c.addEventListener 'click', ->
-      self.cover.remove()
-      self.show()
+    button_c.addEventListener 'click', @finishAreaSelection
 
     buttons = document.createElement 'div'
     buttons.id = 'fdbk-capture-buttons'
@@ -87,6 +85,10 @@ class Fdbk
     @cover.appendChild @area
     @cover.appendChild buttons
     document.body.appendChild @cover
+
+  finishAreaSelection: ->
+    @cover.remove()
+    @show()
 
   onMouseDown: (event) ->
     # If button is pressed, skip this method
@@ -165,7 +167,7 @@ class Fdbk
 
   onMessageReceive: (event) ->
     switch event.data
-      when 'capture' then @selectArea event.source
+      when 'capture' then @startAreaSelection event.source
       when 'close'   then @close()
 
 
